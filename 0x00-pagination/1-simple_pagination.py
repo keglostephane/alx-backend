@@ -2,7 +2,7 @@
 """paginate_database
 """
 import csv
-from typing import List, Tuple, Optional
+from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -32,11 +32,15 @@ class Server:
 
         return self.__dataset
 
-    def get_page(self, page: Optional[int] = 1,
-                 page_size: Optional[int] = 10) -> List[List]:
+    def get_page(self, page: int = 1,
+                 page_size: int = 10) -> List[List]:
         """return a list of items in the page"""
         assert type(page) is int and page > 0, "not a valid page"
         assert type(page_size) is int and page_size > 0, \
             "not a valid page size"
         start, end = index_range(page, page_size)
-        return self.dataset()[start:end]
+        data = self.dataset()
+
+        if end >= len(data):
+            return data[start:]
+        return data[start:end]
