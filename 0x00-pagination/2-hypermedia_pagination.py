@@ -47,7 +47,7 @@ class Server:
         data = self.get_page(page, page_size)
 
         return {
-            'page_size': page_size if data != [] else 0,
+            'page_size': len(data) if data != [] else 0,
             'page': page,
             'data': data,
             'next_page': page + 1 if data != [] else None,
