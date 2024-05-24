@@ -42,6 +42,6 @@ class Server:
         start, end = index_range(page, page_size)
         if start >= len(data):
             return []
-        if (end - start) >= len(data):
+        if end >= len(data):
             return data[start:]
         return data[start:end]
