@@ -2,6 +2,7 @@
 """paginate_database
 """
 import csv
+import math
 from typing import List, Tuple
 
 
@@ -35,9 +36,8 @@ class Server:
     def get_page(self, page: int = 1,
                  page_size: int = 10) -> List[List]:
         """return a list of items in the page"""
-        assert type(page) is int and page > 0, "not a valid page"
-        assert type(page_size) is int and page_size > 0, \
-            "not a valid page size"
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
         start, end = index_range(page, page_size)
         data = self.dataset()
 
