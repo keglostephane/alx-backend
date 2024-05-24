@@ -38,10 +38,5 @@ class Server:
         assert type(page) is int and page > 0, "not a valid page"
         assert type(page_size) is int and page_size > 0, \
             "not a valid page size"
-        data = self.dataset()
         start, end = index_range(page, page_size)
-        if start >= len(data):
-            return []
-        if end >= len(data):
-            return data[start:]
-        return data[start:end]
+        return self.dataset()[start:end]
