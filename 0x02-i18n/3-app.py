@@ -23,6 +23,12 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
+@app.context_processor
+def inject_local():
+    "inject locale in templates"
+    return {'locale': get_locale()}
+
+
 @app.route('/')
 def index():
     """index page"""
