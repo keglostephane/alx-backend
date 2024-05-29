@@ -38,7 +38,7 @@ def get_locale():
         return user_lang
     if request.accept_languages:
         return request.accept_languages.best_match(app.config['LANGUAGES'])
-    return app.config.BABEL_DEFAULT_LOCALE
+    return app.config['BABEL_DEFAULT_LOCALE']
 
 
 @app.context_processor
