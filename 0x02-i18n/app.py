@@ -2,9 +2,8 @@
 """user_locale
 """
 import pytz
-import datetime
 from flask import Flask, render_template, request, g
-from flask_babel import Babel, format_datetime, to_user_timezone
+from flask_babel import Babel, format_datetime
 
 
 class Config:
