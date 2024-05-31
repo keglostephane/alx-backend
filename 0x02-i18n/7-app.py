@@ -47,15 +47,14 @@ def get_timezone():
     """timezone selector"""
     requested_timezone = request.args.get('timezone')
     user_timezone = g.user.get('timezone') if g.user else None
+
     try:
-        if requested_timezone:
-            timezone = pytz.timezone(requested_timezone)
-        elif user_timezone:
-            timezone = pytz.timezone(user_timezone)
+        if requested_timezone and pytz.timezone(requested_timezone):
+            return requested_timezone
+        elif user_timezone and pytz.timezone(user_timezone):
+            return user_timezone
     except pytz.exceptions.UnknownTimeZoneError:
         return app.config['BABEL_DEFAULT_TIMEZONE']
-    else:
-        return timezone
 
 
 @app.context_processor
